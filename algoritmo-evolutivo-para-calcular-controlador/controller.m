@@ -1,12 +1,13 @@
-classdef controller
+classdef controller < matlab.mixin.SetGet
     % Classe para o controlador
     properties
         num
         den
+        transfer_function
         mp
         ts
+        control_signal
         fitness
-        transfer_function
     end
     methods
         function obj = controller(num, den)

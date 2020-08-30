@@ -1,6 +1,7 @@
 % Define os requisitos de controle
 mp = 10;
 ts = 3;
+sc = 30;
 
 % Define o sistema a ser controlado
 Ms = 2.45;
@@ -34,6 +35,41 @@ for i = 1:100
     infoU = stepinfo(u, t);
     
     set(initial(i), 'mp', infoY.Overshoot, 'ts', infoY.SettlingTime, 'control_signal', infoU.Peak);
+end
+
+for j = 1:100
+    if isnan(get(initial(j), 'mp')) || isnan(get(initial(j), 'ts')) || isnan(get(initial(j), 'control_signal'))
+        set(initial(j), 'fitness', 0);
+    end
+    if get(initial(j), 'mp') <= mp
+        if get(initial(j), 'ts') <= ts
+            if get(initial(j), 'control_signal') <= sc
+                set(initial(j), 'fitness', 1000);
+            else
+                set(initial(j), 'fitness', 0);
+            end
+        else
+            if get(initial(j), 'control_signal') <= sc
+                set(initial(j), 'fitness', 70);
+            else
+                set(initial(j), 'fitness', 0);
+            end
+        end
+    else
+        if get(initial(j), 'ts') <= ts
+            if get(initial(j), 'control_signal') <= sc
+                set(initial(j), 'fitness', 70);
+            else
+                set(initial(j), 'fitness', 0);
+            end
+        else
+            if get(initial(j), 'control_signal') <= sc
+                set(initial(j), 'fitness', 35);
+            else
+                set(initial(j), 'fitness', 0);
+            end
+        end
+    end
 end
 
 % Até que as condições sejam satisfeitas

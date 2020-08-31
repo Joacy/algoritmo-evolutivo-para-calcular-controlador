@@ -74,6 +74,8 @@ end
 
 ordered_array = sort_population(initial);
 
+best_individuals = getTop10(ordered_array);
+
 % Até que as condições sejam satisfeitas
 % % Seleciona pais
 % % Recombina pares de pais

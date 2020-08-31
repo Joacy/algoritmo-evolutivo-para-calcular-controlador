@@ -1,5 +1,6 @@
 function [ initial ] = generate_initial_population()
     % Gerando pupulação inicial
+    initial = controller.empty(100);
     for i = 1:100
         numberOfZeros = randi(5);
         numberOfPoles = randi(5);

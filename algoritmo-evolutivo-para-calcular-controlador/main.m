@@ -72,6 +72,8 @@ for j = 1:100
     end
 end
 
+ordered_array = sort_population(initial);
+
 % Até que as condições sejam satisfeitas
 % % Seleciona pais
 % % Recombina pares de pais
